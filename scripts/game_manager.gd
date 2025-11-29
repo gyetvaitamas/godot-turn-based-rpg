@@ -5,6 +5,7 @@ extends Node2D
 var current_character : Character
 var game_over : bool = false
 
+@onready var end_screen = $CanvasLayer/EndScreen
 @onready var player_ui = $CanvasLayer/CombatActionsUI
 
 func next_turn():
@@ -84,4 +85,23 @@ func ai_decide_combat_action() -> CombatAction:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	player_character.OnTakeDamage.connect(_on_player_take_damage)
+	ai_character.OnTakeDamage.connect(_on_ai_take_damage)
+	end_screen.visible = false
 	next_turn()
+	
+func _on_player_take_damage(health : int):
+	if health <= 0:
+		end_game(ai_character)
+
+func _on_ai_take_damage(health : int):
+	if health <= 0:
+		end_game(player_character)
+
+func end_game(winner : Character):
+	game_over = true
+	end_screen.visible = true
+	if winner == player_character:
+		end_screen.set_header_text("You have won.")
+	else:
+		end_screen.set_header_text("You have been defeated.")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ch6caydqm1rod"]
+[gd_scene load_steps=12 format=3 uid="uid://ch6caydqm1rod"]
 
 [ext_resource type="Script" uid="uid://chrm3mvqdx688" path="res://scripts/game_manager.gd" id="1_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://duu4gnne8ovbh" path="res://assets/sprites/backgroundCastles.png" id="1_sugp2"]
@@ -9,6 +9,10 @@
 [ext_resource type="Resource" uid="uid://c45fthk4l2wpg" path="res://combat-actions/heal.tres" id="7_choun"]
 [ext_resource type="Script" uid="uid://bf853yi14tpi5" path="res://scripts/combat_actions_ui.gd" id="8_85g3d"]
 [ext_resource type="Script" uid="uid://bpy56ex2tywpv" path="res://scripts/combat_action_button.gd" id="8_tipki"]
+[ext_resource type="Script" uid="uid://0ub6b2brux22" path="res://scripts/end_screen.gd" id="10_choun"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85g3d"]
+bg_color = Color(0.3696601, 0.65414417, 0.6792579, 1)
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("player_character", "ai_character")]
 script = ExtResource("1_jyhfs")
@@ -90,4 +94,48 @@ bbcode_enabled = true
 text = "[b]Slash[/b]
 Deal 5 damage."
 
+[node name="EndScreen" type="Panel" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_85g3d")
+script = ExtResource("10_choun")
+
+[node name="HeaderText" type="Label" parent="CanvasLayer/EndScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 70
+text = "Player has won the game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayAgain" type="Button" parent="CanvasLayer/EndScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 138.625
+offset_right = 150.0
+offset_bottom = 213.625
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play Again"
+
 [connection signal="pressed" from="CanvasLayer/CombatActionsUI/ButtonContainer/PassTurnButton" to="CanvasLayer/CombatActionsUI" method="_on_pass_turn_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/EndScreen/PlayAgain" to="CanvasLayer/EndScreen" method="_on_play_again_pressed"]
