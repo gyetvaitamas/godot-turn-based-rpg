@@ -24,13 +24,12 @@ func _ready() -> void:
 	sprite.flip_h = facing_left
 	sprite.texture = display_texture
 
+func _process(delta):
+	scale.x = lerp(scale.x, target_scale, delta * 10)
+	scale.y = lerp(scale.y, target_scale, delta * 10)
+
 func begin_turn():
 	target_scale = 1.1
-	
-	if is_player:
-		print("Player turn has begun")
-	else:
-		print("AI turn has begun")
 
 func end_turn():
 	target_scale = 0.9
