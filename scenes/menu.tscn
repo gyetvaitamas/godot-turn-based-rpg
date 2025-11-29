@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1br0gbheja1p"]
+
+[ext_resource type="Script" uid="uid://bck8omaujbgeq" path="res://scripts/menu.gd" id="1_vjb58"]
+[ext_resource type="Texture2D" uid="uid://duu4gnne8ovbh" path="res://assets/sprites/backgroundCastles.png" id="1_yqeox"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vjb58"]
+font_size = 96
+font_color = Color(0, 0.12915738, 0.57996243, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.79607844)
+shadow_offset = Vector2(2, 2)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vjb58")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -319.0
+offset_right = 1157.0
+offset_bottom = 841.0
+texture = ExtResource("1_yqeox")
+expand_mode = 4
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -513.5
+offset_top = -204.0
+offset_right = 513.5
+offset_bottom = -71.999756
+grow_horizontal = 2
+grow_vertical = 2
+text = "Micro Turn Based RPG"
+label_settings = SubResource("LabelSettings_vjb58")
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -157.0
+offset_top = -31.5
+offset_right = 157.0
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -157.0
+offset_top = 46.994995
+offset_right = 157.0
+offset_bottom = 109.994995
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

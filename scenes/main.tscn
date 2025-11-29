@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://ch6caydqm1rod"]
+[gd_scene load_steps=17 format=3 uid="uid://ch6caydqm1rod"]
 
 [ext_resource type="Script" uid="uid://chrm3mvqdx688" path="res://scripts/game_manager.gd" id="1_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://duu4gnne8ovbh" path="res://assets/sprites/backgroundCastles.png" id="1_sugp2"]
+[ext_resource type="Script" uid="uid://ddy3laghoogtj" path="res://scripts/moving_background.gd" id="3_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://cwy5rb66qfhh0" path="res://scenes/character.tscn" id="3_sugp2"]
 [ext_resource type="Texture2D" uid="uid://bmqnvg5cp0plq" path="res://assets/sprites/Dragon.png" id="4_eb6dy"]
 [ext_resource type="Script" uid="uid://cxhmo5ane2bk3" path="res://scripts/combat_action.gd" id="4_o6xl0"]
@@ -14,6 +15,10 @@
 [ext_resource type="Script" uid="uid://0ub6b2brux22" path="res://scripts/end_screen.gd" id="10_choun"]
 [ext_resource type="AudioStream" uid="uid://b7fnsrrxrslfh" path="res://assets/audio/battle_music.wav" id="13_trceg"]
 
+[sub_resource type="Gradient" id="Gradient_a8y0u"]
+offsets = PackedFloat32Array(0, 0.5147929, 1)
+colors = PackedColorArray(0.31764707, 0.827451, 0.6509804, 1, 0.5647059, 0.8509804, 0.1882353, 1, 1, 0.78431374, 0.5019608, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85g3d"]
 bg_color = Color(0.3696601, 0.65414417, 0.6792579, 1)
 
@@ -24,12 +29,14 @@ ai_character = NodePath("AICharacter")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -4096
-offset_left = -597.0
-offset_top = -440.0
-offset_right = 604.0
-offset_bottom = 584.0
+offset_left = -1704.0
+offset_top = -512.0
+offset_right = 932.0
+offset_bottom = 512.0
 texture = ExtResource("1_sugp2")
 stretch_mode = 1
+script = ExtResource("3_a8y0u")
+color_lerp = SubResource("Gradient_a8y0u")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
