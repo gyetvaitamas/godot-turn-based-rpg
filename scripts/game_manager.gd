@@ -45,6 +45,41 @@ func player_cast_combat_action(action : CombatAction):
 	next_turn()
 
 func ai_decide_combat_action() -> CombatAction:
+	if ai_character != current_character:
+		return null
+	
+	var ai = ai_character
+	var player = player_character
+	
+	var actions = ai.combat_actions
+	
+	var weights : Array[int] = []
+	var total_weight = 0
+	
+	var ai_health_perc = float(ai.cur_health) / float(ai.max_health)
+	var player_health_perc = float(player.cur_health) / float(player.max_health)
+	
+	for action in actions:
+		var weight : int = action.base_weight
+		
+		if player.cur_health <= action.melee_damage:
+			weight *= 3
+		
+		if action.heal_amount > 0:
+			weight *= 1 + (1 - ai_health_perc)
+		
+		weights.append(weight)
+		total_weight += weight
+	
+	var cumulative_weight = 0
+	var rand_weight = randi_range(0, total_weight)
+	
+	for i in len(actions):
+		cumulative_weight += weights[i]
+		
+		if rand_weight < cumulative_weight:
+			return actions[i] 
+	
 	return null
 
 # Called when the node enters the scene tree for the first time.
