@@ -1,14 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://ch6caydqm1rod"]
+[gd_scene load_steps=14 format=3 uid="uid://ch6caydqm1rod"]
 
 [ext_resource type="Script" uid="uid://chrm3mvqdx688" path="res://scripts/game_manager.gd" id="1_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://duu4gnne8ovbh" path="res://assets/sprites/backgroundCastles.png" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://cwy5rb66qfhh0" path="res://scenes/character.tscn" id="3_sugp2"]
+[ext_resource type="Texture2D" uid="uid://bmqnvg5cp0plq" path="res://assets/sprites/Dragon.png" id="4_eb6dy"]
 [ext_resource type="Script" uid="uid://cxhmo5ane2bk3" path="res://scripts/combat_action.gd" id="4_o6xl0"]
 [ext_resource type="Resource" uid="uid://b1goqqiysa16i" path="res://combat-actions/slash.tres" id="5_tipki"]
 [ext_resource type="Resource" uid="uid://bil7oaig8rx5v" path="res://combat-actions/heavy_hit.tres" id="6_85g3d"]
 [ext_resource type="Resource" uid="uid://c45fthk4l2wpg" path="res://combat-actions/heal.tres" id="7_choun"]
 [ext_resource type="Script" uid="uid://bf853yi14tpi5" path="res://scripts/combat_actions_ui.gd" id="8_85g3d"]
 [ext_resource type="Script" uid="uid://bpy56ex2tywpv" path="res://scripts/combat_action_button.gd" id="8_tipki"]
+[ext_resource type="Texture2D" uid="uid://bf3jar8eqhtyg" path="res://assets/sprites/Reptile.png" id="9_trceg"]
 [ext_resource type="Script" uid="uid://0ub6b2brux22" path="res://scripts/end_screen.gd" id="10_choun"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85g3d"]
@@ -35,12 +37,15 @@ position = Vector2(-230, 4)
 is_player = true
 cur_health = 10
 max_health = 100
+display_texture = ExtResource("4_eb6dy")
 combat_actions = Array[ExtResource("4_o6xl0")]([ExtResource("5_tipki"), ExtResource("6_85g3d"), ExtResource("7_choun")])
 
 [node name="AICharacter" parent="." instance=ExtResource("3_sugp2")]
 position = Vector2(230, 4)
 cur_health = 100
 max_health = 100
+facing_left = true
+display_texture = ExtResource("9_trceg")
 combat_actions = Array[ExtResource("4_o6xl0")]([ExtResource("5_tipki"), ExtResource("6_85g3d"), ExtResource("7_choun")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
