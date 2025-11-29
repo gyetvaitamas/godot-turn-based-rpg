@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=3 uid="uid://ch6caydqm1rod"]
+
+[ext_resource type="Script" uid="uid://chrm3mvqdx688" path="res://scripts/game_manager.gd" id="1_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://duu4gnne8ovbh" path="res://assets/sprites/backgroundCastles.png" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://cwy5rb66qfhh0" path="res://scenes/character.tscn" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://cxhmo5ane2bk3" path="res://scripts/combat_action.gd" id="4_o6xl0"]
+[ext_resource type="Resource" uid="uid://b1goqqiysa16i" path="res://combat-actions/slash.tres" id="5_tipki"]
+[ext_resource type="Resource" uid="uid://bil7oaig8rx5v" path="res://combat-actions/heavy_hit.tres" id="6_85g3d"]
+[ext_resource type="Resource" uid="uid://c45fthk4l2wpg" path="res://combat-actions/heal.tres" id="7_choun"]
+[ext_resource type="Script" uid="uid://bf853yi14tpi5" path="res://scripts/combat_actions_ui.gd" id="8_85g3d"]
+[ext_resource type="Script" uid="uid://bpy56ex2tywpv" path="res://scripts/combat_action_button.gd" id="8_tipki"]
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("player_character", "ai_character")]
+script = ExtResource("1_jyhfs")
+player_character = NodePath("PlayerCharacter")
+ai_character = NodePath("AICharacter")
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -4096
+offset_left = -597.0
+offset_top = -440.0
+offset_right = 604.0
+offset_bottom = 584.0
+texture = ExtResource("1_sugp2")
+stretch_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("3_sugp2")]
+position = Vector2(-230, 4)
+is_player = true
+cur_health = 10
+max_health = 100
+combat_actions = Array[ExtResource("4_o6xl0")]([ExtResource("5_tipki"), ExtResource("6_85g3d"), ExtResource("7_choun")])
+
+[node name="AICharacter" parent="." instance=ExtResource("3_sugp2")]
+position = Vector2(230, 4)
+cur_health = 100
+max_health = 100
+combat_actions = Array[ExtResource("4_o6xl0")]([ExtResource("5_tipki"), ExtResource("6_85g3d"), ExtResource("7_choun")])
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CombatActionsUI" type="Panel" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -225.0
+offset_top = -155.0
+offset_right = 225.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("8_85g3d")
+
+[node name="ButtonContainer" type="VBoxContainer" parent="CanvasLayer/CombatActionsUI"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 180.0
+offset_bottom = 165.0
+
+[node name="CombatActionButton" type="Button" parent="CanvasLayer/CombatActionsUI/ButtonContainer"]
+layout_mode = 2
+text = "Slash"
+script = ExtResource("8_tipki")
+
+[node name="CombatActionButton2" type="Button" parent="CanvasLayer/CombatActionsUI/ButtonContainer"]
+layout_mode = 2
+text = "Slash"
+script = ExtResource("8_tipki")
+
+[node name="CombatActionButton3" type="Button" parent="CanvasLayer/CombatActionsUI/ButtonContainer"]
+layout_mode = 2
+text = "Slash"
+script = ExtResource("8_tipki")
+
+[node name="PassTurnButton" type="Button" parent="CanvasLayer/CombatActionsUI/ButtonContainer"]
+layout_mode = 2
+text = "Pass Turn"
+
+[node name="Description" type="RichTextLabel" parent="CanvasLayer/CombatActionsUI"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 10.0
+offset_right = 439.0
+offset_bottom = 145.0
+bbcode_enabled = true
+text = "[b]Slash[/b]
+Deal 5 damage."
+
+[connection signal="pressed" from="CanvasLayer/CombatActionsUI/ButtonContainer/PassTurnButton" to="CanvasLayer/CombatActionsUI" method="_on_pass_turn_button_pressed"]
