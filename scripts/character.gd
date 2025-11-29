@@ -56,4 +56,5 @@ func cast_combat_action(action : CombatAction, opponent : Character):
 		heal(action.heal_amount)
 
 func _play_audio(stream : AudioStream):
-	pass
+	audio.stream = stream
+	audio.play()

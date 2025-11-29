@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ch6caydqm1rod"]
+[gd_scene load_steps=15 format=3 uid="uid://ch6caydqm1rod"]
 
 [ext_resource type="Script" uid="uid://chrm3mvqdx688" path="res://scripts/game_manager.gd" id="1_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://duu4gnne8ovbh" path="res://assets/sprites/backgroundCastles.png" id="1_sugp2"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bpy56ex2tywpv" path="res://scripts/combat_action_button.gd" id="8_tipki"]
 [ext_resource type="Texture2D" uid="uid://bf3jar8eqhtyg" path="res://assets/sprites/Reptile.png" id="9_trceg"]
 [ext_resource type="Script" uid="uid://0ub6b2brux22" path="res://scripts/end_screen.gd" id="10_choun"]
+[ext_resource type="AudioStream" uid="uid://b7fnsrrxrslfh" path="res://assets/audio/battle_music.wav" id="13_trceg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85g3d"]
 bg_color = Color(0.3696601, 0.65414417, 0.6792579, 1)
@@ -141,6 +142,11 @@ offset_bottom = 213.625
 grow_horizontal = 2
 grow_vertical = 2
 text = "Play Again"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_trceg")
+volume_db = -15.0
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/CombatActionsUI/ButtonContainer/PassTurnButton" to="CanvasLayer/CombatActionsUI" method="_on_pass_turn_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/EndScreen/PlayAgain" to="CanvasLayer/EndScreen" method="_on_play_again_pressed"]
