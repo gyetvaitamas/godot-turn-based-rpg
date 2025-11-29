@@ -2,14 +2,9 @@ extends TextureRect
 
 @export var speed : float = 200.0
 @export var extents : float = 1024.0
-@onready var start_post : Vector2 = position
-
 @export var color_lerp : Gradient
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
+@onready var start_post : Vector2 = position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

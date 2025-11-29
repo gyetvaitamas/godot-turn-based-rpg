@@ -2,11 +2,12 @@ extends Node2D
 
 @export var player_character : Character
 @export var ai_character : Character
-var current_character : Character
-var game_over : bool = false
 
 @onready var end_screen = $CanvasLayer/EndScreen
 @onready var player_ui = $CanvasLayer/CombatActionsUI
+
+var current_character : Character
+var game_over : bool = false
 
 func next_turn():
 	if game_over:
@@ -58,7 +59,7 @@ func ai_decide_combat_action() -> CombatAction:
 	var total_weight = 0
 	
 	var ai_health_perc = float(ai.cur_health) / float(ai.max_health)
-	var player_health_perc = float(player.cur_health) / float(player.max_health)
+	# var player_health_perc = float(player.cur_health) / float(player.max_health)
 	
 	for action in actions:
 		var weight : int = action.base_weight

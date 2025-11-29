@@ -9,14 +9,12 @@ signal OnHeal(health : int)
 @export var max_health : int
 @export var facing_left : bool = false
 @export var display_texture : Texture2D
-
 @export var combat_actions : Array[CombatAction]
-
-var target_scale : float = 1.0
 
 @onready var audio : AudioStreamPlayer = $AudioStreamPlayer
 @onready var sprite : Sprite2D = $Sprite
 
+var target_scale : float = 1.0
 var take_damage_sfx : AudioStream = preload("res://assets/audio/take_damage.wav")
 var heal_sfx : AudioStream = preload("res://assets/audio/heal.wav")
 

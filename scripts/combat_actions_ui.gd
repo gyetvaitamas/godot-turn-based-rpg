@@ -1,10 +1,10 @@
 extends Panel
 
 @onready var button_container = $ButtonContainer
-var ca_buttons : Array[CombatActionButton]
-
 @onready var description_text : RichTextLabel = $Description
 @onready var game_manager = $"../.."
+
+var ca_buttons : Array[CombatActionButton]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,10 +35,6 @@ func _button_entered(button : CombatActionButton):
 
 func _button_exited(button : CombatActionButton):
 	description_text.text = ""
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _on_pass_turn_button_pressed() -> void:
 	game_manager.next_turn()

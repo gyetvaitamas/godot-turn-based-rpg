@@ -1,9 +1,9 @@
 extends Sprite2D
 
+@onready var base_offset : Vector2 = offset
+
 var bob_amount : float = 0.02
 var bob_speed : float = 15.0
-
-@onready var base_offset : Vector2 = offset
 var shake_intensity : float = 0.0
 var shake_damping : float = 10.0
 
